@@ -34,19 +34,21 @@ while True:
     at_work.append("www."+idhu+".com")
     ada = ada+1
     if ada == summa:
+        print(at_work)
         break
 
 for i in at_work:
     new_list.append(build_packet(i))
 
-def sendqueries(queries):
+def sendqueries():
     b = 0
     skt = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    skt.bind(("",5000))
+    #skt.bind(("",5000))
     for i in new_list:
         skt.sendto(bytes(i), (str(dns_server), 53))
         b = b+1
         sys.stdout.write("\r Sent "+ str(b))
         sys.stdout.flush()
 
-sendqueries(new_list)
+
+sendqueries()
